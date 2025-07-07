@@ -1,6 +1,6 @@
 {
   "name": "firstlog",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Modern middleware based logger for Express.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -46,14 +46,6 @@
     "express": "^4.18.3",
     "nanoid": "^5.1.5",
     "source-map-support": "^0.5.21"
-  },
-  "peerDependencies": {
-    "geoip-lite": "^1.4.10"
-  },
-  "peerDependenciesMeta": {
-    "geoip-lite": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.6",

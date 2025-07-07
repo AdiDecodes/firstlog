@@ -266,4 +266,8 @@ This project is licensed under the Usage-Only License.
 - Replaced uuid with nanoid
 - Modularized `geoip-lite` as an optional peer dependency to reduce bundle size for users who do not need the GeoIP feature.
 
+### v0.0.4
+
+- Fixed an issue where `geoip-lite` was getting installed automatically
+
 **Made with ❤️ by Aditya**

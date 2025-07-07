@@ -85,9 +85,6 @@ export function logger(options: LoggerOptions): ExpressMiddleware {
     try {
       geoip = require("geoip-lite");
     } catch (error) {
-      console.warn(
-        "Logwise: The 'geoip-lite' package is not installed. GeoIP feature will be disabled. Please run 'npm install geoip-lite' to use this feature."
-      );
       geoip = null;
     }
   }
@@ -116,7 +113,7 @@ export function logger(options: LoggerOptions): ExpressMiddleware {
       if (trackOrigin && !(req as any)._logwiseOrigin) {
         (req as any)._logwiseOrigin = getOriginInfo();
       }
-      
+
       if (logResponseBody && chunk) {
         chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
       }
@@ -161,31 +158,38 @@ export function logger(options: LoggerOptions): ExpressMiddleware {
         logEntry.origin = (req as any)._logwiseOrigin;
       }
 
-      if (
-        enableGeoIP &&
-        geoip &&
-        normalizedIp &&
-        normalizedIp !== "127.0.0.1" &&
-        normalizedIp !== "unknown"
-      ) {
-        const geo = geoip.lookup(normalizedIp);
-        if (geo) {
+      if (enableGeoIP) {
+        // Check if geoip was successfully loaded first
+        if (!geoip) {
+          console.warn(
+            "FirstLog: The 'geoip-lite' package is not installed. GeoIP feature will be disabled. Please run 'npm install geoip-lite' to use this feature."
+          );
           logEntry.location = {
-            country: geo.country,
-            region: geo.region,
-            city: geo.city,
+            country: "Install `geoip-lite` for location data",
+            region: "",
+            city: "",
+          };
+        } else if (
+          normalizedIp &&
+          normalizedIp !== "127.0.0.1" &&
+          normalizedIp !== "unknown"
+        ) {
+          const geo = geoip.lookup(normalizedIp);
+          if (geo) {
+            logEntry.location = {
+              country: geo.country,
+              region: geo.region,
+              city: geo.city,
+            };
+          }
+        } else {
+          // Handle local or unknown IPs
+          logEntry.location = {
+            country: "Not available for local/unknown IP",
+            region: "",
+            city: "",
           };
         }
-      } else if (
-        enableGeoIP &&
-        normalizedIp &&
-        (normalizedIp === "127.0.0.1" || normalizedIp === "unknown")
-      ) {
-        logEntry.location = {
-          country: "Not available for local requests",
-          region: "Not available for local requests",
-          city: "Not available for local requests",
-        };
       }
 
       if (logHeaders) {
@@ -260,7 +264,7 @@ function limitSize(obj: any, maxBytes: number) {
 function writeLog(filePath: string, logEntry: any, pretty: boolean) {
   const dir = path.dirname(filePath);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  const logLine = JSON.stringify(logEntry, null, pretty ? 2 : 0) + "\n" ;
+  const logLine = JSON.stringify(logEntry, null, pretty ? 2 : 0) + "\n";
   fs.appendFile(filePath, logLine, (err) => {
     if (err) console.error("Failed to write log:", err);
   });
