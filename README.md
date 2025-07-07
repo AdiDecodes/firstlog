@@ -5,23 +5,14 @@
 <h1 align="center"><strong>Firstlog</strong></h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/firstlog" style="text-decoration: none;">
-    <img src="https://img.shields.io/npm/v/firstlog.svg?style=for-the-badge" alt="NPM version" />
-  </a>
+  <img src="https://img.shields.io/npm/v/firstlog.svg?style=for-the-badge" alt="NPM version" />
   &nbsp;&nbsp;
-  <a href="https://www.npmjs.com/package/firstlog" style="text-decoration: none;">
-    <img src="https://img.shields.io/npm/dm/firstlog?style=for-the-badge" alt="NPM downloads" />
-  </a>
+  <img src="https://img.shields.io/npm/dm/firstlog.svg?style=for-the-badge" alt="NPM downloads" />
   &nbsp;&nbsp;
-  <a href="https://github.com/adidecodes/firstlog/stargazers" style="text-decoration: none;">
-    <img src="https://img.shields.io/github/stars/adidecodes/firstlog.svg?style=for-the-badge" alt="GitHub stars" />
-  </a>
+  <img src="https://img.shields.io/github/stars/adidecodes/firstlog.svg?style=for-the-badge" alt="GitHub stars" />
   &nbsp;&nbsp;
-  <a href="https://www.typescriptlang.org/" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/built%20with-TypeScript-blue.svg?style=for-the-badge" alt="Built with TypeScript" />
-  </a>
+  <img src="https://img.shields.io/badge/built%20with-TypeScript-blue.svg?style=for-the-badge" alt="Built with TypeScript" />
 </p>
-
 
 <p align="center">
   <em>Firstlog is a flexible and powerful Express.js middleware for advanced request logging with comprehensive features like geographic tracking, performance monitoring, and customizable output formats.</em>
@@ -47,19 +38,21 @@ npm install firstlog
 ## Quick Start
 
 ```typescript
-import express from 'express';
-import { logger } from 'firstlog';
+import express from "express";
+import { logger } from "firstlog";
 
 const app = express();
 
 // Basic usage
-app.use(logger({
-  logFile: './logs/access.log'
-}));
+app.use(
+  logger({
+    logFile: "./logs/access.log",
+  })
+);
 
 // Your routes
-app.get('/', (req, res) => {
-  res.json({ message: 'Hello World' });
+app.get("/", (req, res) => {
+  res.json({ message: "Hello World" });
 });
 
 app.listen(3000);
@@ -69,94 +62,102 @@ app.listen(3000);
 
 ### Basic Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `logFile` | `string` | **Required** | Path to the log file |
-| `maskFields` | `string[]` | `['password', 'token']` | Fields to mask in logs |
-| `captureBody` | `boolean` | `true` | Whether to capture request body |
-| `prettyPrint` | `boolean` | `false` | Format JSON logs with indentation |
+| Option        | Type       | Default                 | Description                       |
+| ------------- | ---------- | ----------------------- | --------------------------------- |
+| `logFile`     | `string`   | **Required**            | Path to the log file              |
+| `maskFields`  | `string[]` | `['password', 'token']` | Fields to mask in logs            |
+| `captureBody` | `boolean`  | `true`                  | Whether to capture request body   |
+| `prettyPrint` | `boolean`  | `false`                 | Format JSON logs with indentation |
 
 ### Advanced Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `onlyLogOnError` | `boolean` | `false` | Only log requests that result in errors (4xx, 5xx) |
-| `maxBodySize` | `number` | `1024` | Maximum body size to log (in bytes) |
-| `slowThresholdMs` | `number` | `1000` | Threshold for marking requests as slow |
-| `excludePaths` | `string[]` | `[]` | Paths to exclude from logging |
-| `requestIdHeader` | `string` | `'x-request-id'` | Header name for request ID |
+| Option            | Type       | Default          | Description                                        |
+| ----------------- | ---------- | ---------------- | -------------------------------------------------- |
+| `onlyLogOnError`  | `boolean`  | `false`          | Only log requests that result in errors (4xx, 5xx) |
+| `maxBodySize`     | `number`   | `1024`           | Maximum body size to log (in bytes)                |
+| `slowThresholdMs` | `number`   | `1000`           | Threshold for marking requests as slow             |
+| `excludePaths`    | `string[]` | `[]`             | Paths to exclude from logging                      |
+| `requestIdHeader` | `string`   | `'x-request-id'` | Header name for request ID                         |
 
 ### Feature Toggles
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `trackQuery` | `boolean` | `false` | Include query parameters in logs |
-| `trackOrigin` | `boolean` | `false` | Track the origin of the request |
-| `enableGeoIP` | `boolean` | `false` | Enable geographic IP tracking |
-| `logHeaders` | `boolean` | `false` | Include request headers in logs |
-| `logParams` | `boolean` | `false` | Include route parameters in logs |
+| Option            | Type      | Default | Description                           |
+| ----------------- | --------- | ------- | ------------------------------------- |
+| `trackQuery`      | `boolean` | `false` | Include query parameters in logs      |
+| `trackOrigin`     | `boolean` | `false` | Track the origin of the request       |
+| `enableGeoIP`     | `boolean` | `false` | Enable geographic IP tracking         |
+| `logHeaders`      | `boolean` | `false` | Include request headers in logs       |
+| `logParams`       | `boolean` | `false` | Include route parameters in logs      |
 | `logResponseBody` | `boolean` | `false` | Include response body snippet in logs |
 
 ### Callbacks
 
-| Option | Type | Description |
-|--------|------|-------------|
-| `trackUser` | `(req: Request) => string` | Custom function to identify users |
-| `onLog` | `(logEntry) => void` | Callback executed for each log entry |
+| Option      | Type                       | Description                          |
+| ----------- | -------------------------- | ------------------------------------ |
+| `trackUser` | `(req: Request) => string` | Custom function to identify users    |
+| `onLog`     | `(logEntry) => void`       | Callback executed for each log entry |
 
 ## Usage Examples
 
 ### Basic Logging
 
 ```typescript
-import { logger } from 'firstlog';
+import { logger } from "firstlog";
 
-app.use(logger({
-  logFile: './logs/app.log'
-}));
+app.use(
+  logger({
+    logFile: "./logs/app.log",
+  })
+);
 ```
 
 ### Advanced Configuration
 
 ```typescript
-app.use(logger({
-  logFile: './logs/app.log',
-  maskFields: ['password', 'token', 'apiKey'],
-  captureBody: true,
-  trackQuery: true,
-  enableGeoIP: true,
-  slowThresholdMs: 500,
-  prettyPrint: true,
-  excludePaths: ['/health', '/metrics'],
-  trackUser: (req) => req.user?.id || 'anonymous',
-  onLog: (logEntry) => {
-    if (logEntry.slow) {
-      console.warn(`Slow request detected: ${logEntry.route}`);
-    }
-  }
-}));
+app.use(
+  logger({
+    logFile: "./logs/app.log",
+    maskFields: ["password", "token", "apiKey"],
+    captureBody: true,
+    trackQuery: true,
+    enableGeoIP: true,
+    slowThresholdMs: 500,
+    prettyPrint: true,
+    excludePaths: ["/health", "/metrics"],
+    trackUser: (req) => req.user?.id || "anonymous",
+    onLog: (logEntry) => {
+      if (logEntry.slow) {
+        console.warn(`Slow request detected: ${logEntry.route}`);
+      }
+    },
+  })
+);
 ```
 
 ### Error-Only Logging
 
 ```typescript
-app.use(logger({
-  logFile: './logs/errors.log',
-  onlyLogOnError: true,
-  logResponseBody: true
-}));
+app.use(
+  logger({
+    logFile: "./logs/errors.log",
+    onlyLogOnError: true,
+    logResponseBody: true,
+  })
+);
 ```
 
 ### External Service Integration
 
 ```typescript
-app.use(logger({
-  logFile: './logs/app.log',
-  onLog: (logEntry) => {
-    // Send to your monitoring service
-    analytics.track('request', logEntry);
-  }
-}));
+app.use(
+  logger({
+    logFile: "./logs/app.log",
+    onLog: (logEntry) => {
+      // Send to your monitoring service
+      analytics.track("request", logEntry);
+    },
+  })
+);
 ```
 
 ## Log Format
@@ -192,12 +193,12 @@ Each log entry contains the following information:
 Firstlog is built with TypeScript and includes comprehensive type definitions:
 
 ```typescript
-import { LoggerOptions, logger } from 'firstlog';
+import { LoggerOptions, logger } from "firstlog";
 
 const options: LoggerOptions = {
-  logFile: './logs/app.log',
-  maskFields: ['password'],
-  captureBody: true
+  logFile: "./logs/app.log",
+  maskFields: ["password"],
+  captureBody: true,
 };
 
 app.use(logger(options));
@@ -235,16 +236,15 @@ This project is licensed under the Usage-Only License.
 
 [![buy me a coffee](https://res.cloudinary.com/customzone-app/image/upload/c_pad,w_200/v1712840190/bmc-button_wl78gx.png)](https://www.buymeacoffee.com/adidecodes)
 
-
 ## Changelog
 
 ### v0.0.1
+
 - Initial release
 - Basic logging functionality
 - TypeScript support
 - GeoIP integration
 - Performance monitoring
 - Security features
-
 
 **Made with ❤️ by Aditya**
