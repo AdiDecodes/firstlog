@@ -5,22 +5,23 @@
 <h1 align="center"><strong>Firstlog</strong></h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/firstlog">
+  <a href="https://www.npmjs.com/package/firstlog" style="text-decoration: none;">
     <img src="https://img.shields.io/npm/v/firstlog.svg?style=for-the-badge" alt="NPM version" />
   </a>
   &nbsp;&nbsp;
-  <a href="https://www.npmjs.com/package/firstlog">
-    <img src="https://img.shields.io/npm/d18m/firstlog?style=for-the-badge" alt="NPM downloads" />
+  <a href="https://www.npmjs.com/package/firstlog" style="text-decoration: none;">
+    <img src="https://img.shields.io/npm/dm/firstlog?style=for-the-badge" alt="NPM downloads" />
   </a>
   &nbsp;&nbsp;
-  <a href="https://github.com/adidecodes/firstlog/stargazers">
+  <a href="https://github.com/adidecodes/firstlog/stargazers" style="text-decoration: none;">
     <img src="https://img.shields.io/github/stars/adidecodes/firstlog.svg?style=for-the-badge" alt="GitHub stars" />
   </a>
   &nbsp;&nbsp;
-  <a href="https://www.typescriptlang.org/">
+  <a href="https://www.typescriptlang.org/" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/built%20with-TypeScript-blue.svg?style=for-the-badge" alt="Built with TypeScript" />
   </a>
 </p>
+
 
 <p align="center">
   <em>Firstlog is a flexible and powerful Express.js middleware for advanced request logging with comprehensive features like geographic tracking, performance monitoring, and customizable output formats.</em>
