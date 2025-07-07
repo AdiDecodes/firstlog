@@ -1,6 +1,30 @@
-# Firstlog
+<p align="center">
+  <img src="https://res.cloudinary.com/domebtgvk/image/upload/v1751872966/free-wood-log-icon-download-in-svg-png-gif-file-formats--wooden-timber-firewood-autumn-pack-nature-icons-5002823_zdbj46.png" alt="Firstlog Logo" width="180" />
+</p>
 
-A flexible and powerful Express.js middleware for advanced request logging with comprehensive features like geographic tracking, performance monitoring, and customizable output formats.
+<h1 align="center"><strong>Firstlog</strong></h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/firstlog">
+    <img src="https://img.shields.io/npm/v/firstlog.svg?style=for-the-badge" alt="NPM version" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.npmjs.com/package/firstlog">
+    <img src="https://img.shields.io/npm/d18m/firstlog?style=for-the-badge" alt="NPM downloads" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/adidecodes/firstlog/stargazers">
+    <img src="https://img.shields.io/github/stars/adidecodes/firstlog.svg?style=for-the-badge" alt="GitHub stars" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.typescriptlang.org/">
+    <img src="https://img.shields.io/badge/built%20with-TypeScript-blue.svg?style=for-the-badge" alt="Built with TypeScript" />
+  </a>
+</p>
+
+<p align="center">
+  <em>Firstlog is a flexible and powerful Express.js middleware for advanced request logging with comprehensive features like geographic tracking, performance monitoring, and customizable output formats.</em>
+</p>
 
 ## Features
 
@@ -182,7 +206,6 @@ app.use(logger(options));
 
 - **Body Capture**: Disable `captureBody` for high-throughput applications
 - **GeoIP**: GeoIP lookups add latency; use only when necessary
-- **File I/O**: Consider using `onLog` for high-performance logging solutions
 - **Memory Usage**: Set appropriate `maxBodySize` to prevent memory issues
 
 ## Security
@@ -201,6 +224,17 @@ This project is licensed under the Usage-Only License.
 - **uuid**: Secure request ID generation
 - **geoip-lite**: Geographic IP tracking
 
+## Authors
+
+- [@adidecodes](https://www.github.com/adidecodes)
+
+## Conclusion
+
+#### If you like this package, show your support & love!
+
+[![buy me a coffee](https://res.cloudinary.com/customzone-app/image/upload/c_pad,w_200/v1712840190/bmc-button_wl78gx.png)](https://www.buymeacoffee.com/adidecodes)
+
+
 ## Changelog
 
 ### v0.0.1
@@ -211,5 +245,5 @@ This project is licensed under the Usage-Only License.
 - Performance monitoring
 - Security features
 
----
+
 **Made with ❤️ by Aditya**
