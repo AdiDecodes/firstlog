@@ -35,6 +35,12 @@
 npm install firstlog
 ```
 
+To use the optional GeoIP feature, you must also install `geoip-lite`:
+
+```bash
+npm install geoip-lite
+```
+
 ## Quick Start
 
 ```typescript
@@ -120,7 +126,7 @@ app.use(
     maskFields: ["password", "token", "apiKey"],
     captureBody: true,
     trackQuery: true,
-    enableGeoIP: true,
+    enableGeoIP: true, // Requires geoip-lite to be installed
     slowThresholdMs: 500,
     prettyPrint: true,
     excludePaths: ["/health", "/metrics"],
@@ -207,14 +213,13 @@ app.use(logger(options));
 ## Performance Considerations
 
 - **Body Capture**: Disable `captureBody` for high-throughput applications
-- **GeoIP**: GeoIP lookups add latency; use only when necessary
+- **GeoIP**: GeoIP lookups add latency and require the `geoip-lite` peer dependency. Use only when necessary.
 - **Memory Usage**: Set appropriate `maxBodySize` to prevent memory issues
 
 ## Security
 
 - Sensitive fields are automatically masked using the `maskFields` option
-- Request IDs are generated using UUID v4 for uniqueness
-- File paths are validated to prevent directory traversal attacks
+- Request IDs are generated using `nanoid` package
 
 ## License
 
@@ -223,8 +228,11 @@ This project is licensed under the Usage-Only License.
 ## Dependencies
 
 - **express**: Web framework compatibility
-- **uuid**: Secure request ID generation
-- **geoip-lite**: Geographic IP tracking
+- **nanoid**: Secure request ID generation
+
+### Peer Dependencies
+
+- **geoip-lite** (optional): For geographic IP tracking.
 
 ## Authors
 
@@ -246,5 +254,16 @@ This project is licensed under the Usage-Only License.
 - GeoIP integration
 - Performance monitoring
 - Security features
+
+### v0.0.2
+
+- Minor Fixes
+- Updated Readme
+
+### v0.0.3
+
+- Reduced package size under 100KB
+- Replaced uuid with nanoid
+- Modularized `geoip-lite` as an optional peer dependency to reduce bundle size for users who do not need the GeoIP feature.
 
 **Made with ❤️ by Aditya**

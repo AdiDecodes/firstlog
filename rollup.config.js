@@ -9,15 +9,17 @@ export default {
     {
       file: "dist/index.cjs.js",
       format: "cjs",
-      sourcemap: true,
+      sourcemap: false,
+      exports: "named",
     },
     {
       file: "dist/index.esm.js",
       format: "esm",
-      sourcemap: true,
+      sourcemap: false,
+      exports: "named",
     },
   ],
-  external: ["fs", "path", "uuid", "geoip-lite"],
+  external: ["fs", "path", "nanoid", "geoip-lite"],
   plugins: [
     resolve(),
     commonjs(),
@@ -29,7 +31,12 @@ export default {
       format: {
         comments: false,
       },
-      compress: true,
+      compress: {
+        passes: 2,
+        unsafe: true,
+        drop_console: true,
+        drop_debugger: true,
+      },
     }),
   ],
 };

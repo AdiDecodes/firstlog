@@ -3,14 +3,12 @@ import "source-map-support/register";
 import type { Request, Response, NextFunction } from "express";
 import fs from "fs";
 import path from "path";
-import { v4 as uuidv4 } from "uuid";
-import geoip from "geoip-lite";
+import { nanoid } from "nanoid";
 
 // A more specific type for the origin object
 export interface Origin {
   file?: string;
   func?: string;
-  line?: number;
 }
 
 export interface LoggerOptions {
@@ -82,6 +80,18 @@ export function logger(options: LoggerOptions): ExpressMiddleware {
     excludePaths = [],
   } = options;
 
+  let geoip: any;
+  if (enableGeoIP) {
+    try {
+      geoip = require("geoip-lite");
+    } catch (error) {
+      console.warn(
+        "Logwise: The 'geoip-lite' package is not installed. GeoIP feature will be disabled. Please run 'npm install geoip-lite' to use this feature."
+      );
+      geoip = null;
+    }
+  }
+
   return (req: Request, res: Response, next: NextFunction) => {
     if (excludePaths.includes(req.path)) return next();
 
@@ -92,7 +102,7 @@ export function logger(options: LoggerOptions): ExpressMiddleware {
 
     const requestId = Array.isArray(req.headers[requestIdHeader])
       ? (req.headers[requestIdHeader] as string[])[0]
-      : (req.headers[requestIdHeader] as string) || uuidv4();
+      : (req.headers[requestIdHeader] as string) || nanoid();
     (req as any).requestId = requestId;
 
     // Store origin info on the request object to capture it later
@@ -153,6 +163,7 @@ export function logger(options: LoggerOptions): ExpressMiddleware {
 
       if (
         enableGeoIP &&
+        geoip &&
         normalizedIp &&
         normalizedIp !== "127.0.0.1" &&
         normalizedIp !== "unknown"
