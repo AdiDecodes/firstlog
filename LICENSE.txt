@@ -1,0 +1,25 @@
+Copyright © 2025 AdCopyright © 2025 Aditya Singh
+
+USAGE-ONLY LICENSE
+
+Permission is hereby granted to any individual or organization (the "User") to use this Software solely for internal application development and operational purposes.
+
+STRICT RESTRICTIONS:
+- NO REDISTRIBUTION: This code may NOT be redistributed, shared, or distributed in any form, whether original or modified.
+- NO RESALE: This software may NOT be sold, resold, or included in any commercial package or offering.
+- NO MODIFICATION: This software may NOT be modified, altered, or used to create derivative works.
+- NO SUBLICENSING: This license may NOT be sublicensed or transferred to third parties.
+- NO REVERSE ENGINEERING: Reverse engineering, decompiling, or disassembling is prohibited.
+
+PERMITTED USE:
+- Use the software as-is in your own applications
+- Include as a dependency in your projects (not for redistribution)
+
+This software is provided "AS IS", without warranty of any kind, express or implied.
+
+For any permissions beyond this license, contact the author at your-email@example.com.
+USAGE-ONLY LICENSE
+
+This license does not grant rights to sublicense, sell, or make derivative works.
+
+For commercial use, licensing, or redistribution permissions, contact the author.
